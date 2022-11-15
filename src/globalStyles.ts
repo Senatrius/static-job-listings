@@ -16,5 +16,6 @@ export const GlobalStyles = createGlobalStyle`
 
   body {
     font-size: 0.9375rem;
+    font-family: 'League Spartan', sans-serif;
   }
 `
