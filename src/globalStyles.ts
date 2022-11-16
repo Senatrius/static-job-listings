@@ -5,7 +5,8 @@ export const COLORS = {
   filterChip: "hsl(180, 31%, 95%)",
   primary: "hsl(180, 29%, 50%)",
   darkGray: "hsl(180, 14%, 20%)",
-  lightGray: "hsl(180, 8%, 52%)"
+  lightGray: "hsl(180, 8%, 52%)",
+  shadow: "hsla(180, 29%, 50%, .1)",
 }
 export const GlobalStyles = createGlobalStyle`
   *, *::before, *::after {
@@ -17,5 +18,7 @@ export const GlobalStyles = createGlobalStyle`
   body {
     font-size: 0.9375rem;
     font-family: 'League Spartan', sans-serif;
+    font-weight: 500;
+    background: ${COLORS.background}
   }
 `
