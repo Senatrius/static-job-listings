@@ -10,6 +10,7 @@ const HeaderComponent = styled.header`
   background-repeat: no-repeat;
   background-position: left bottom;
   background-size: cover;
+  z-index: -1;
 
   @media screen and (min-width: 767px) {
     background-image: url('src/images/bg-header-desktop.svg');

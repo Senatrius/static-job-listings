@@ -10,11 +10,11 @@ const SelectedFiltersComponent = styled.div`
   box-shadow: 0 6px 20px ${COLORS.shadow};
   background: white;
   border-radius: 5px;
-  transform: translateY(-2rem);
+  margin-top: -2rem;
 
   @media screen and (min-width: 767px) {
     padding: 1.25rem 2.1825rem;
-    transform: translateY(-2.25rem);
+    margin-top: -2.25rem;
   }
 `;
 
@@ -69,7 +69,13 @@ const RemoveFilter = styled.button`
   }
 `;
 
-export const SelectedFilters = ({clearAllFilters, removeFilter, filters}: {clearAllFilters: () => void, removeFilter: (...args: any) => void, filters: string[]}) => {
+interface FilterProps {
+  clearAllFilters: () => void,
+  removeFilter: (...args: any) => void,
+  filters: string[]
+}
+
+export const SelectedFilters = ({clearAllFilters, removeFilter, filters}: FilterProps) => {
   return <SelectedFiltersComponent>
     <FilterList>
       {filters.map(filter => <FilterItem key={filter}><span>{filter}</span><RemoveFilter onClick={e => removeFilter(e)} data-filter={filter} aria-label={`Remove ${filter} filter`}/></FilterItem>)}
