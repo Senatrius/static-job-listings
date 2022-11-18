@@ -5,6 +5,10 @@ import { JobsProps } from '../App';
 const JobListingsComponent = styled.div`
   width: 100%;
   margin-top: 3.5rem;
+
+  @media screen and (min-width: 767px) {
+    margin-top: 2.5rem;
+  }
 `
 
 interface JobListProps {

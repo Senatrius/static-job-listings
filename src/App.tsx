@@ -31,7 +31,7 @@ function App() {
   }, [])
 
   useEffect(() => {
-    let newJobs = new Set();
+    let newJobs: Set<JobsProps> = new Set();
 
     jobs.filter(job => {
       const tags = job.tools.concat(job.languages);
