@@ -22,38 +22,54 @@ export interface JobsProps {
 }
 
 function App() {
-  const [filters, setFilters] = useState<string[]>([])
+  const [selectedFilters, setSelectedFilters] = useState<string[]>([])
   const [jobs, setJobs] = useState<JobsProps[]>([])
+  const [filteredJobs, setFilteredJobs] = useState<JobsProps[]>([])
 
   useEffect(() => {
-    fetchJobs().then(jobs => setJobs(jobs))
+    fetchJobs().then(jobs => setJobs(jobs));
   }, [])
 
+  useEffect(() => {
+    let newJobs = new Set();
+
+    jobs.filter(job => {
+      const tags = job.tools.concat(job.languages);
+      tags.push(job.role, job.level, job.location);
+
+      if(selectedFilters.every(selectedFilter => tags.includes(selectedFilter))) {
+        newJobs.add(job);
+      }
+    })
+
+    setFilteredJobs(Array.from(newJobs))
+  }, [selectedFilters])
+
   const addNewFilter = (skill: string) => {
-    if(!filters.includes(skill)) {
-      setFilters([...filters, skill])
+    if(!selectedFilters.includes(skill)) {
+      setSelectedFilters([...selectedFilters, skill])
     }
   }
 
   const removeFilter = (e: React.MouseEvent<HTMLButtonElement>) => {
     if(e.currentTarget.dataset.filter) {
       const filterToRemove = e.currentTarget.dataset.filter;
-      const filterIndex = filters.indexOf(filterToRemove);
+      const filterIndex = selectedFilters.indexOf(filterToRemove);
 
-      const newFilters = filters.filter((_, idx) => idx !== filterIndex)
-      setFilters(newFilters)
+      const newFilters = selectedFilters.filter((_, idx) => idx !== filterIndex)
+      setSelectedFilters(newFilters)
     }
   }
 
   const clearAllFilters = () => {
-    setFilters([]);
+    setSelectedFilters([]);
   }
 
   return <>
     <Header />
     <Main>
-      {filters.length > 0 ? <SelectedFilters clearAllFilters={clearAllFilters} removeFilter={removeFilter} filters={filters}/> : null}
-      <JobListings jobs={jobs} addNewFilter={addNewFilter}/>
+      {selectedFilters.length > 0 ? <SelectedFilters clearAllFilters={clearAllFilters} removeFilter={removeFilter} filters={selectedFilters}/> : null}
+      <JobListings jobs={filteredJobs.length === 0 ? jobs : filteredJobs} addNewFilter={addNewFilter}/>
     </Main>
   </>
 }

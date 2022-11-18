@@ -101,6 +101,7 @@ interface JobProps {
 
 export const JobCard = ({addNewFilter, jobData}: JobProps) => {
   const skills = jobData.tools.concat(jobData.languages);
+  skills.push(jobData.role, jobData.level, jobData.location)
 
   //@ts-ignore
   return <JobCardComponent featured={jobData.featured}>
@@ -112,7 +113,7 @@ export const JobCard = ({addNewFilter, jobData}: JobProps) => {
     </div>
     <Separator />
     <SkillList>
-      {skills.map(skill => <SkillItem><AddFilter onClick={() => addNewFilter(skill)}>{skill}</AddFilter></SkillItem>)}
+      {skills.map((skill, idx) => <SkillItem key={idx}><AddFilter onClick={() => addNewFilter(skill)}>{skill}</AddFilter></SkillItem>)}
     </SkillList>
   </JobCardComponent>
 }
