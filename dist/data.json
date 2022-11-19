@@ -32,7 +32,7 @@
   {
     "id": 3,
     "company": "Account",
-    "logo": "./src/images/account.svg",
+    "logo": "./images/account.svg",
     "new": true,
     "featured": false,
     "position": "Junior Frontend Developer",

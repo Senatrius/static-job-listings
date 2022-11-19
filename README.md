@@ -25,8 +25,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Solution URL: [https://www.frontendmentor.io/solutions/static-job-listings-built-with-react-and-typescript-XGf9OWQSMO](https://www.frontendmentor.io/solutions/static-job-listings-built-with-react-and-typescript-XGf9OWQSMO)
+- Live Site URL: [https://static-job-listings-d5yvcohxk-senatrius.vercel.app/](https://static-job-listings-d5yvcohxk-senatrius.vercel.app/)
 
 ## My process
 
