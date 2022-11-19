@@ -58,7 +58,7 @@ const RemoveFilter = styled.button`
   border: none;
   outline: none;
   background-color: ${COLORS.primary};
-  background-image: url('src/images/icon-remove.svg');
+  background-image: url('./images/icon-remove.svg');
   background-position: center;
   background-repeat: no-repeat;
   cursor: pointer;
