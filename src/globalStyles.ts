@@ -21,4 +21,4 @@ export const GlobalStyles = createGlobalStyle`
     font-weight: 500;
     background: ${COLORS.background}
   }
-`
+`;
