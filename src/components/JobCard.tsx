@@ -12,7 +12,7 @@ const JobCardComponent = styled.div<{featured: boolean}>`
   border-left: ${props => props.featured ? `5px solid ${COLORS.primary}` : "5px solid transparent"};
   margin-bottom: 2.5rem;
 
-  @media screen and (min-width: 767px) {
+  @media screen and (min-width: 1150px) {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -31,8 +31,7 @@ const Logo = styled.div<{logoUrl: string}>`
   background-position: center;
   background-size: cover;
 
-  @media screen and (min-width: 767px) {
-    display: block;
+  @media screen and (min-width: 1150px) {
     position: relative;
     top: unset;
     width: 5.5rem;
@@ -127,20 +126,19 @@ const Separator = styled.div`
   background: ${COLORS.lightGray};
   margin: 1rem 0;
 
-  @media screen and (min-width: 767px) {
+  @media screen and (min-width: 1150px) {
     display: none;
   }
 `
 
 const SkillList = styled.ul`
   display: flex;
-  width: 100%;
+  width: auto;
   gap: 1rem;
   flex-wrap: wrap;
   list-style: none;
 
-  @media screen and (min-width: 767px) {
-    width: auto;
+  @media screen and (min-width: 1150px) {
     margin-left: auto;
     justify-content: flex-end;
   }
