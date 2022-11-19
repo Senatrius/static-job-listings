@@ -23,7 +23,7 @@ const FilterList = styled.ul`
   gap: 1rem;
   list-style: none;
   flex-wrap: wrap;
-`
+`;
 
 const FilterItem = styled.li`
   display: flex;
@@ -35,7 +35,7 @@ const FilterItem = styled.li`
     color: ${COLORS.primary};
     border-radius: 0.25rem 0 0 0.25rem;
   }
-`
+`;
 
 const ClearFilters = styled.button`
   margin: 0;
@@ -70,16 +70,35 @@ const RemoveFilter = styled.button`
 `;
 
 interface FilterProps {
-  clearAllFilters: () => void,
-  removeFilter: (...args: any) => void,
-  filters: string[]
+  clearAllFilters: () => void;
+  removeFilter: (...args: any) => void;
+  filters: string[];
 }
 
-export const SelectedFilters = ({clearAllFilters, removeFilter, filters}: FilterProps) => {
-  return <SelectedFiltersComponent>
-    <FilterList>
-      {filters.map(filter => <FilterItem key={filter}><span>{filter}</span><RemoveFilter onClick={e => removeFilter(e)} data-filter={filter} aria-label={`Remove ${filter} filter`}/></FilterItem>)}
-    </FilterList>
-    <ClearFilters onClick={clearAllFilters} aria-label="Clear all filters">Clear</ClearFilters>
-  </SelectedFiltersComponent>
-}
+export const SelectedFilters = ({
+  clearAllFilters,
+  removeFilter,
+  filters
+}: FilterProps) => {
+  return (
+    <SelectedFiltersComponent>
+      <FilterList>
+        {filters.map(filter => (
+          <FilterItem key={filter}>
+            <span>{filter}</span>
+            <RemoveFilter
+              onClick={e => removeFilter(e)}
+              data-filter={filter}
+              aria-label={`Remove ${filter} filter`}
+            />
+          </FilterItem>
+        ))}
+      </FilterList>
+      <ClearFilters
+        onClick={clearAllFilters}
+        aria-label='Clear all filters'>
+        Clear
+      </ClearFilters>
+    </SelectedFiltersComponent>
+  );
+};

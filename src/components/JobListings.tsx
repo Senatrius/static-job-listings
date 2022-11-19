@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { JobCard } from './JobCard';
-import { JobsProps } from '../App';
+import { IJob } from '../App';
 
 const JobListingsComponent = styled.div`
   width: 100%;
@@ -9,15 +9,23 @@ const JobListingsComponent = styled.div`
   @media screen and (min-width: 767px) {
     margin-top: 2.5rem;
   }
-`
+`;
 
-interface JobListProps {
-  jobs: JobsProps[],
-  addNewFilter: (args: string) => void
+interface IJobList {
+  jobs: IJob[];
+  addNewFilter: (args: string) => void;
 }
 
-export const JobListings = ({jobs, addNewFilter}: JobListProps) => {
-  return <JobListingsComponent>
-    {jobs.map((job, idx) => <JobCard key={idx} jobData={job} addNewFilter={skill => addNewFilter(skill)}/>)}
-  </JobListingsComponent>
-}
+export const JobListings = ({ jobs, addNewFilter }: IJobList) => {
+  return (
+    <JobListingsComponent>
+      {jobs.map((job: IJob, idx: number) => (
+        <JobCard
+          key={idx}
+          jobData={job}
+          addNewFilter={skill => addNewFilter(skill)}
+        />
+      ))}
+    </JobListingsComponent>
+  );
+};

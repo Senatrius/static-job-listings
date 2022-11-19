@@ -1,15 +1,16 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 import { COLORS } from '../globalStyles';
-import { JobsProps } from '../App';
+import { IJob } from '../App';
 
-const JobCardComponent = styled.div<{featured: boolean}>`
+const JobCardComponent = styled.div<{ featured: Boolean }>`
   position: relative;
   width: 100%;
   padding: 2rem 1.5rem 1.5rem 1.125rem;
   background: white;
   border-radius: 0.25rem;
   box-shadow: 0 6px 20px ${COLORS.shadow};
-  border-left: ${props => props.featured ? `5px solid ${COLORS.primary}` : "5px solid transparent"};
+  border-left: ${props =>
+    props.featured ? `5px solid ${COLORS.primary}` : '5px solid transparent'};
   margin-bottom: 2.5rem;
 
   @media screen and (min-width: 1150px) {
@@ -21,13 +22,13 @@ const JobCardComponent = styled.div<{featured: boolean}>`
   }
 `;
 
-const Logo = styled.div<{logoUrl: string}>`
+const Logo = styled.div<{ logoUrl: string }>`
   position: absolute;
   top: -1.5rem;
   width: 3rem;
   height: 3rem;
   border-radius: 50%;
-  background-image: ${props => props.logoUrl ? `url(${props.logoUrl})` : ""};
+  background-image: ${props => (props.logoUrl ? `url(${props.logoUrl})` : '')};
   background-position: center;
   background-size: cover;
 
@@ -38,7 +39,7 @@ const Logo = styled.div<{logoUrl: string}>`
     height: 5.5rem;
     margin-right: 1.375rem;
   }
-`
+`;
 
 const Listing = styled.div`
   display: flex;
@@ -46,9 +47,9 @@ const Listing = styled.div`
   align-items: center;
 
   @media screen and (min-width: 767px) {
-    margin: 0 0 .5rem 0;
+    margin: 0 0 0.5rem 0;
   }
-`
+`;
 
 const Title = styled.h1`
   font-size: 0.9375rem;
@@ -59,7 +60,7 @@ const Title = styled.h1`
   @media screen and (min-width: 767px) {
     font-size: 1.125rem;
   }
-`
+`;
 
 const TitleChip = styled.div`
   display: flex;
@@ -72,15 +73,15 @@ const TitleChip = styled.div`
   border-radius: 50rem;
   font-size: 0.875rem;
   color: white;
-`
+`;
 
 const Featured = styled(TitleChip)`
   background: ${COLORS.darkGray};
-`
+`;
 
 const New = styled(TitleChip)`
   background: ${COLORS.primary};
-`
+`;
 
 const Position = styled.p`
   font-size: 0.9375rem;
@@ -90,14 +91,14 @@ const Position = styled.p`
   cursor: pointer;
 
   &:hover {
-    color: ${COLORS.primary}
+    color: ${COLORS.primary};
   }
 
   @media screen and (min-width: 767px) {
     font-size: 1.375rem;
     margin-bottom: 0.675rem;
   }
-`
+`;
 
 const Details = styled.div`
   display: flex;
@@ -109,7 +110,7 @@ const Details = styled.div`
   @media screen and (min-width: 767px) {
     font-size: 1.125rem;
   }
-`
+`;
 
 const Dot = styled.div`
   width: 0.25rem;
@@ -117,8 +118,8 @@ const Dot = styled.div`
   border-radius: 50%;
   margin: 0 0.75rem;
   background: ${COLORS.lightGray};
-  opacity: .5;
-`
+  opacity: 0.5;
+`;
 
 const Separator = styled.div`
   width: 100%;
@@ -129,7 +130,7 @@ const Separator = styled.div`
   @media screen and (min-width: 1150px) {
     display: none;
   }
-`
+`;
 
 const SkillList = styled.ul`
   display: flex;
@@ -142,10 +143,9 @@ const SkillList = styled.ul`
     margin-left: auto;
     justify-content: flex-end;
   }
-`
+`;
 
-const SkillItem = styled.li`
-`
+const SkillItem = styled.li``;
 
 const AddFilter = styled.button`
   font-weight: 700;
@@ -160,38 +160,49 @@ const AddFilter = styled.button`
 
   &:hover {
     color: white;
-    background: ${COLORS.primary}
+    background: ${COLORS.primary};
   }
 
   &:active {
-    background: ${COLORS.darkGray}
+    background: ${COLORS.darkGray};
   }
-`
+`;
 
-interface JobProps {
-  jobData: JobsProps,
-  addNewFilter: (args: string) => void,
+interface IJobs {
+  jobData: IJob;
+  addNewFilter: (args: string) => void;
 }
 
-export const JobCard = ({addNewFilter, jobData}: JobProps) => {
+export const JobCard = ({ addNewFilter, jobData }: IJobs) => {
   const skills = jobData.tools.concat(jobData.languages);
-  skills.push(jobData.role, jobData.level, jobData.location)
+  skills.push(jobData.role, jobData.level, jobData.location);
 
-  //@ts-ignore
-  return <JobCardComponent featured={jobData.featured}>
-    <Logo logoUrl={jobData.logo} />
-    <div>
-      <Listing>
-        <Title>{jobData.company}</Title>
-        {jobData.new && <New>New!</New>}
-        {jobData.featured && <Featured>Featured</Featured>}
-      </Listing>
-      <Position>{jobData.position}</Position>
-      <Details>{jobData.postedAt}<Dot />{jobData.contract}<Dot />{jobData.location}</Details>
-    </div>
-    <Separator />
-    <SkillList>
-      {skills.map((skill, idx) => <SkillItem key={idx}><AddFilter onClick={() => addNewFilter(skill)}>{skill}</AddFilter></SkillItem>)}
-    </SkillList>
-  </JobCardComponent>
-}
+  return (
+    <JobCardComponent featured={jobData.featured}>
+      <Logo logoUrl={jobData.logo} />
+      <div>
+        <Listing>
+          <Title>{jobData.company}</Title>
+          {jobData.new && <New>New!</New>}
+          {jobData.featured && <Featured>Featured</Featured>}
+        </Listing>
+        <Position>{jobData.position}</Position>
+        <Details>
+          {jobData.postedAt}
+          <Dot />
+          {jobData.contract}
+          <Dot />
+          {jobData.location}
+        </Details>
+      </div>
+      <Separator />
+      <SkillList>
+        {skills.map((skill: string, idx: number) => (
+          <SkillItem key={idx}>
+            <AddFilter onClick={() => addNewFilter(skill)}>{skill}</AddFilter>
+          </SkillItem>
+        ))}
+      </SkillList>
+    </JobCardComponent>
+  );
+};
